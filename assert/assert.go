@@ -2,38 +2,30 @@ package assert
 
 import "log"
 
-func True(b bool, msg interface{}) {
+func Assert(b bool, msg interface{}) {
 	if !b {
 		log.Panic(msg)
 	}
 }
 
-func Truef(b bool, f string, args ...interface{}) {
+func AssertF(b bool, f string, args ...interface{}) {
 	if !b {
 		log.Panicf(f, args...)
 	}
 }
 
-func False(b bool, msg interface{}) {
-	True(!b, msg)
-}
-
-func Falsef(b bool, f string, args ...interface{}) {
-	Truef(!b, f, args...)
-}
-
 func Equal(a, b interface{}, msg interface{}) {
-	True(a == b, msg)
+	Assert(a == b, msg)
 }
 
-func Equalf(a, b interface{}, f string, args ...interface{}) {
-	Truef(a == b, f, args...)
+func EqualF(a, b interface{}, f string, args ...interface{}) {
+	AssertF(a == b, f, args...)
 }
 
 func NotEqual(a, b interface{}, msg interface{}) {
-	True(a != b, msg)
+	Assert(a != b, msg)
 }
 
-func NotEqualf(a, b interface{}, f string, args ...interface{}) {
-	Truef(a != b, f, args...)
+func NotEqualF(a, b interface{}, f string, args ...interface{}) {
+	AssertF(a != b, f, args...)
 }
